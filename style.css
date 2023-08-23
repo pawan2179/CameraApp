@@ -1,0 +1,91 @@
+* {
+    box-sizing: border-box;
+}
+
+.video-cont {
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+}
+
+video {
+    height: 100%;
+    width: 100%;
+}
+
+.actions-cont {
+    height: 12rem;
+    width: 5rem;
+    position: absolute;
+    top: calc((100vh - 12rem)/2);
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.actions-cont > * {
+    width: 100%;
+    height: 5rem;
+    border-radius: 50%;
+    border: 5px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.record-btn {
+    background-color: red;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+}
+
+.capture-btn {
+    background-color: white;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+}
+
+.scale-record {
+    animation-name: scale-record;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+}
+
+.scale-capture {
+    animation-name: scale-capture;
+    animation-iteration-count: 1;
+    animation-duration: 1s;
+}
+
+.timer-cont {
+    position: absolute;
+    font-size: 0.8rem;
+    bottom: 4rem;
+    left: 50vw;
+}
+
+.timer {
+    display: none;
+}
+
+/* defining our animation */
+@keyframes scale-record {
+    0% {
+        transform: scale(0.0);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes scale-capture {
+    0% {
+        transform: scale(0.0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
