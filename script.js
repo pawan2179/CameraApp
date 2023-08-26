@@ -59,6 +59,21 @@ recordBtnCont.addEventListener("click", (e) => {
     }
 })
 
+captureBtnCont.addEventListener("click", (event) => {
+    let canvas = document.createElement("canvas");
+    canvas.height = video.height;
+    canvas.width = video.width;
+
+    let tool = canvas.getContext("2d");
+    tool.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    let imageUrl = canvas.toDataURL();
+    let a = document.createElement("a");
+    a.href = imageUrl;
+    a.download = "image.png"
+    a.click();
+})
+
 function startTimer() {
     function displayTimer() {
         timer.style.display = "block";
