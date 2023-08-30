@@ -35,10 +35,22 @@ navigator.mediaDevices.getUserMedia(constraints)
         let blob = new Blob(chunks, { type: "video/mp4"});
         let videoUrl = URL.createObjectURL(blob);
 
-        let a = document.createElement("a");
-        a.href = videoUrl;
-        a.download = "stream.mp4";
-        a.click();
+        // let a = document.createElement("a");
+        // a.href = videoUrl;
+        // a.download = "stream.mp4";
+        // a.click();
+
+        // stopTimer();
+
+        if(db) {
+            let dbTransaction = db.transaction("video", "readwrite");
+            let videoStore = dbTransaction.objectStore("video");
+            let videoEntry = {
+                id: shortid(),
+                blobData: blob
+            }
+            videoStore.add(videoEntry);
+        }
 
         stopTimer();
     });
@@ -59,10 +71,12 @@ recordBtnCont.addEventListener("click", (e) => {
     }
 })
 
+let body = document.querySelector("body");
+
 captureBtnCont.addEventListener("click", (event) => {
     let canvas = document.createElement("canvas");
-    canvas.height = video.height;
-    canvas.width = video.width;
+    canvas.height = body.height;
+    canvas.width = body.width;
 
     let tool = canvas.getContext("2d");
     tool.drawImage(video, 0, 0, canvas.width, canvas.height);
@@ -70,7 +84,7 @@ captureBtnCont.addEventListener("click", (event) => {
     let imageUrl = canvas.toDataURL();
     let a = document.createElement("a");
     a.href = imageUrl;
-    a.download = "image.png"
+    a.download = "image.jpg"
     a.click();
 })
 

@@ -71,6 +71,22 @@ video {
     display: none;
 }
 
+.material-icons {
+    color: white;
+    font-size: 3rem;
+}
+
+.gallery {
+    position: absolute;
+    right: 3rem;
+    bottom: 7rem;
+    z-index: 2;
+}
+
+.gallery:hover {
+    cursor: pointer;
+}
+
 /* defining our animation */
 @keyframes scale-record {
     0% {
